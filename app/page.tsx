@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Github, Linkedin, Moon, Sun } from 'lucide-react';
+import Image from 'next/image';
+
+
 
 const PortfolioPage = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -93,7 +96,7 @@ const projects = useMemo(() => [
                   isDarkMode ? 'bg-gray-800' : 'bg-white'
                 } shadow-lg`}
               >
-                <img 
+                <Image
                   src={project.image} 
                   alt={project.title}
                   className="w-full h-64 object-cover"
