@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Github, Linkedin, Moon, Sun } from 'lucide-react';
 
 const PortfolioPage = () => {
@@ -18,13 +18,13 @@ const PortfolioPage = () => {
     }
   }, []);
 
-  const toggleDarkMode = () => {
+  const toggleDarkMode = useCallback(() => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
     localStorage.setItem('darkMode', JSON.stringify(newMode));
-  };
+  }, [isDarkMode]);
 
-  const projects = [
+const projects = useMemo(() => [
     {
       title: 'Project One',
       category: 'Development',
@@ -43,7 +43,7 @@ const PortfolioPage = () => {
       description: 'Innovative platform solution that transforms how users interact with digital content.',
       image: '/api/placeholder/400/500'
     }
-  ];
+], []);
 
 
   return (
