@@ -69,7 +69,8 @@ const projects = useMemo(() => [
         </div>
       </nav>
 
-      {/* Hero Section */}
+      /* Hero Section */
+      
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-7xl font-bold mb-8">
@@ -84,7 +85,8 @@ const projects = useMemo(() => [
         </div>
       </section>
 
-      {/* Recent Projects */}
+      /* Recent Projects */
+
       <section id="work" className={`py-20 px-6 ${isDarkMode ? 'bg-black/20' : 'bg-gray-50'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-5xl font-bold mb-12">recent projects</h2>
@@ -112,7 +114,8 @@ const projects = useMemo(() => [
         </div>
       </section>
 
-      {/* Contact Section */}
+      /* Contact Section */
+
       <section id="contact" className="py-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-5xl font-bold mb-6">Tell me what's next.</h2>
@@ -133,7 +136,8 @@ const projects = useMemo(() => [
         </div>
       </section>
 
-      {/* Footer */}
+      /* Footer */
+
       <footer className="py-6 px-6 text-center text-sm opacity-60">
         <p>© {new Date().getFullYear()} Your Name. All rights reserved.</p>
       </footer>
