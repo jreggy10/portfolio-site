@@ -3,11 +3,68 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Github, Linkedin, Moon, Sun } from 'lucide-react';
 import Image from 'next/image';
+import projectImage1 from '@/public/images/project1.jpg'
+import projectImage2 from '@/public/images/project2.jpg'
+import projectImage3 from '@/public/images/project3.jpg'
+
+// Define project type
+interface Project {
+  title: string;
+  category: string;
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+}
 
 
 
 const PortfolioPage = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+
+
+// Example projects with custom images
+const projects: Project[] = [
+  {
+    title: 'Project One',
+    category: 'Development',
+    description: 'A cutting-edge web application',
+    image: {
+      src: '/project1.jpg', // Place your image in public/images/
+      alt: 'Project 1 preview',
+      width: 800,
+      height: 1000
+    }
+  },
+  {
+    title: 'Project Two',
+    category: 'Design & Development',
+    description: 'Creative digital experience',
+    image: {
+      src: '/project2.jpg',
+      alt: 'Project 2 preview',
+      width: 800,
+      height: 1000
+    }
+  },
+  {
+    title: 'Project Three',
+    category: 'Design & Development',
+    description: 'Creative digital experience',
+    image: {
+      src: '/project3.jpg',
+      alt: 'Project 3 preview',
+      width: 800,
+      height: 1000
+    }
+  },
+
+  // Add more projects...
+];
+
 
   useEffect(() => {
     // Check localStorage and system preference on mount
@@ -19,34 +76,13 @@ const PortfolioPage = () => {
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setIsDarkMode(systemPrefersDark);
     }
-  }, []);
+  });
 
   const toggleDarkMode = useCallback(() => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
     localStorage.setItem('darkMode', JSON.stringify(newMode));
   }, [isDarkMode]);
-
-const projects = useMemo(() => [
-    {
-      title: 'Project One',
-      category: 'Development',
-      description: 'A cutting-edge web application focused on delivering exceptional user experiences through innovative technology solutions.',
-      image: '/api/placeholder/400/500'
-    },
-    {
-      title: 'Project Two',
-      category: 'Design & Development',
-      description: 'Creative digital experience that pushes the boundaries of modern web development and interactive design.',
-      image: '/api/placeholder/400/500'
-    },
-    {
-      title: 'Project Three',
-      category: 'Development',
-      description: 'Innovative platform solution that transforms how users interact with digital content.',
-      image: '/api/placeholder/400/500'
-    }
-], []);
 
 
   return (
@@ -74,9 +110,9 @@ const projects = useMemo(() => [
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-7xl font-bold mb-8">
-            your
+            jreggy
             <br />
-            name
+            media
           </h1>
           <p className="text-xl max-w-2xl opacity-80">
             Creative professional with a passion for digital innovation and development.
@@ -98,11 +134,16 @@ const projects = useMemo(() => [
                   isDarkMode ? 'bg-gray-800' : 'bg-white'
                 } shadow-lg`}
               >
-                <Image
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-64 object-cover"
-                />
+                <div className="relative w-full h-64">
+                  <Image 
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={index < 2} // Load first two images immediately
+                  />
+                </div>
                 <div className="p-6">
                   <div className="text-sm opacity-60 mb-2">{project.category}</div>
                   <h3 className="text-xl font-bold mb-3">{project.title}</h3>
